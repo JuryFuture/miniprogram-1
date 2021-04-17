@@ -1,5 +1,6 @@
 // pages/post/post.js
-var dataObj = require("../../data/data.js");
+//var DBPost = require("../../db/DBPost.js").DBPost;
+import {DBPost} from '../../db/DBPost';
 
 Page({
 
@@ -13,8 +14,9 @@ Page({
    */
   onLoad: function (options) {
     console.log("onLoad页面被加载");
+    var dbPost = new DBPost();
     this.setData({
-      postList: dataObj.postList
+      postList: dbPost.getAllPostData()
     });
   },
 

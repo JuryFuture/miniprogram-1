@@ -1,4 +1,4 @@
-var DBPost = function () {
+/*var DBPost = function () {
   this.storageKeyName = 'postList'
 }
 
@@ -20,4 +20,28 @@ DBPost.prototype = {
 
 module.exports = {
   DBPost: DBPost
+}*/
+
+class DBPost {
+  constructor(url) {
+    this.srorageKeyName = 'postList';
+  }
+
+  getAllPostData() {
+    var res = wx.getStorageSync(this.srorageKeyName);
+    if (!res) {
+      res = require("../data/data").postList;
+      this.execSetStorageSync(res);
+    }
+
+    return res;
+  }
+
+  execSetStorageSync(data) {
+    wx.setStorageSync(this.srorageKeyName, data)
+  }
+}
+
+export {
+  DBPost
 }
